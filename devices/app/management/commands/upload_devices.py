@@ -1,13 +1,13 @@
 from django.core.management.base import BaseCommand
 from app.models import Device
-from app.devices import dev_baza
+from app.devices import data
 
 
 class Command(BaseCommand):
     help = 'Загрузка таблицы устройств в базу данных.'
 
     def handle(self, *args, **options):
-        for device in dev_baza:
+        for device in data:
             Device.objects.create(
                 sticker=device['Наклейка'] if 'Наклейка' in device.keys() else 'empty',
                 building=device['Дом'] if 'Дом' in device.keys() else 'empty',

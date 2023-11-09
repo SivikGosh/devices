@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   db:
-    container_name: devices_db
+    container_name: database
     image: postgres:13.0-alpine
     restart: always
     volumes:
@@ -12,8 +12,8 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
 
-  devices:
-    container_name: devices_app
+  app:
+    container_name: application
     build:
       context: ../devices
     restart: always
@@ -23,7 +23,7 @@ services:
       - db
 
   nginx:
-    container_name: devices_server
+    container_name: webserver
     image: nginx:1.21.3-alpine
     restart: always
     ports:
@@ -33,47 +33,12 @@ services:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     depends_on:
-      - devices
-
+      - app
 
 volumes:
   db_data:
-    name: devices_db
+    name: devices_db_vol
   static_value:
-    name: devices_static
+    name: devices_static_vol
   media_value:
-    name: devices_media
-
-# The commented out section below is an example of how to define a PostgreSQL
-# database that your application can use. `depends_on` tells Docker Compose to
-# start the database before your application. The `db-data` volume persists the
-# database data between container restarts. The `db-password` secret is used
-# to set the database password. You must create `db/password.txt` and add
-# a password of your choosing to it before running `docker compose up`.
-#     depends_on:
-#       db:
-#         condition: service_healthy
-#   db:
-#     image: postgres
-#     restart: always
-#     user: postgres
-#     secrets:
-#       - db-password
-#     volumes:
-#       - db-data:/var/lib/postgresql/data
-#     environment:
-#       - POSTGRES_DB=example
-#       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-#     expose:
-#       - 5432
-#     healthcheck:
-#       test: [ "CMD", "pg_isready" ]
-#       interval: 10s
-#       timeout: 5s
-#       retries: 5
-# volumes:
-#   db-data:
-# secrets:
-#   db-password:
-#     file: db/password.txt
-
+    name: devices_media_vol
