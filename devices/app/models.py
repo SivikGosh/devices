@@ -18,6 +18,21 @@ class Device(models.Model):
     comment_3 = models.CharField(max_length=255)  # comment_3
     street = models.CharField(max_length=255)  # Улица
 
+    def __str__(self):
+        return self.ip
+
     class Meta:
         verbose_name = 'Устройство'
         verbose_name_plural = 'Устройства'
+
+
+class Comment(models.Model):
+    "Модель комментариев к устройству"
+
+    text = models.TextField()
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name='comments')
+    published = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'

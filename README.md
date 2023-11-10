@@ -1,6 +1,12 @@
 # bookish-octo-engine
 devices
 
+build dev compose:
+- docker compose -f .\compose_dev.yaml -p dev_devices up --build -d
+
+build prod compose:
+- docker compose -f .\compose.yaml -p devices up --build -d
+
 ## 1st step
 
 Create app and upload devices data with management custom management command.
@@ -27,4 +33,10 @@ Start uploading data
 
     python manage.py upload_devices
 
-with data in "devices.py" file.
+with list of objects with name "data" in "devices.py" file on the app directory.
+
+## 2nd step
+
+Move comment columns to foreign model. Add manage command for moving data.
+
+    python manage.py move_comments
