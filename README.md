@@ -7,6 +7,9 @@ build dev compose:
 build prod compose:
 - docker compose -f .\compose.yaml -p devices up --build -d
 
+dumpdata:
+- dumpdata --natural-foreign -e contenttypes -e auth.Permission > dump.json
+
 ## 1st step
 
 Create app and upload devices data with management custom management command.

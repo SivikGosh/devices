@@ -4,10 +4,19 @@ from django.db import models
 class Device(models.Model):
     "Общая модель устройства"
 
-    sticker = models.CharField(max_length=255)  # Наклейка
+    sticker = models.PositiveSmallIntegerField(
+        verbose_name='Наклейка',
+        blank=True,
+        null=True,
+        unique=True,
+    )
+
     building = models.CharField(max_length=255)  # Дом
     ip = models.CharField(max_length=255)  # ip address
-    block = models.CharField(max_length=255)  # Район
+
+    # Район: 'Склад', 'empty', 'Красногорск', 'Лобня', 'Москва', 'Октябрьский', 'Котельники', 'Люберцы'
+    block = models.CharField(max_length=255)
+
     model = models.CharField(max_length=255)  # model
     comment_1 = models.CharField(max_length=255)
     wtf = models.CharField(max_length=255)  # wtf
