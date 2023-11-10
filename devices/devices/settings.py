@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'devices.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "db.sqlite3",
+        "NAME": "database/db.sqlite3",
         # 'ENGINE': 'django.db.backends.postgresql',
         # 'NAME': 'postgres',
         # 'USER': 'postgres',

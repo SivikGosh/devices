@@ -9,13 +9,13 @@ class Device(models.Model):
     ip = models.CharField(max_length=255)  # ip address
     block = models.CharField(max_length=255)  # Район
     model = models.CharField(max_length=255)  # model
-    comment_1 = models.CharField(max_length=255)  # comment
+    comment_1 = models.CharField(max_length=255)
     wtf = models.CharField(max_length=255)  # wtf
     netmask = models.CharField(max_length=255)  # netmask
-    comment_2 = models.CharField(max_length=255)  # comment_2
+    comment_2 = models.CharField(max_length=255)
     sn = models.CharField(max_length=255)  # serial number
     mac = models.CharField(max_length=255)  # mac
-    comment_3 = models.CharField(max_length=255)  # comment_3
+    comment_3 = models.CharField(max_length=255)
     street = models.CharField(max_length=255)  # Улица
 
     def __str__(self):
