@@ -1,44 +1,15 @@
 version: "3.8"
 
 services:
-
-  db:
-    container_name: database
-    image: postgres:13.0-alpine
-    restart: always
-    volumes:
-      - db_data:/var/lib/postgresql/data/
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-
   app:
-    container_name: application
     build:
-      context: ../devices
+      context: ../devices/
+    volumes:
+      - dev_db:/devices/database
     restart: always
     ports:
       - "8000:8000"
-    depends_on:
-      - db
-
-  nginx:
-    container_name: webserver
-    image: nginx:1.21.3-alpine
-    restart: always
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/prod.conf:/etc/nginx/conf.d/default.conf
-      - static_value:/var/html/static/
-      - media_value:/var/html/media/
-    depends_on:
-      - app
 
 volumes:
-  db_data:
-    name: devices_db_vol
-  static_value:
-    name: devices_static_vol
-  media_value:
-    name: devices_media_vol
+  dev_db:
+    name: dev_db
