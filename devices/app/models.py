@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Device(models.Model):
-    "Общая модель устройства"
+    """"Общая модель устройства"""
 
     sticker = models.PositiveSmallIntegerField(
         verbose_name='Наклейка',
@@ -19,7 +19,6 @@ class Device(models.Model):
 
     model = models.CharField(max_length=255)  # model
     comment_1 = models.CharField(max_length=255)
-    wtf = models.CharField(max_length=255)  # wtf
     netmask = models.CharField(max_length=255)  # netmask
     comment_2 = models.CharField(max_length=255)
     sn = models.CharField(max_length=255)  # serial number
@@ -36,7 +35,7 @@ class Device(models.Model):
 
 
 class Comment(models.Model):
-    "Модель комментариев к устройству"
+    """Модель комментариев к устройству"""
 
     text = models.TextField()
     device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name='comments')
