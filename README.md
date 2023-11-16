@@ -8,7 +8,7 @@ build prod compose:
 - docker compose -f .\compose.yaml -p devices up --build -d
 
 dumpdata:
-- dumpdata --natural-foreign -e contenttypes -e auth.Permission > dump.json
+- -Xutf8 dumpdata --natural-foreign -e contenttypes -e auth.Permission -o dump.json
 
 ## 1st step
 
