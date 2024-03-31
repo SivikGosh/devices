@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ../devices/
+    volumes:
+      - db:/devices/database
+    restart: always
+    ports:
+      - "8001:8000"
+
+volumes:
+  db:
+    name: db
