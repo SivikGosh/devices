@@ -11,17 +11,21 @@ class CommentInline(admin.TabularInline):
 @admin.register(Device)
 class DeviceAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'sticker', 'building', 'ip', 'block', 'model', 'wtf', 'netmask', 'sn', 'mac',
-        'street'
+        'id', 'sticker', 'building', 'ip', 'block', 'model', 'wtf', 'netmask',
+        'sn', 'mac', 'street'
     )
     search_fields = (
-        'id', 'sticker', 'building', 'ip', 'block', 'model', 'wtf', 'netmask', 'sn', 'mac',
-        'street'
+        'id', 'sticker', 'building', 'ip', 'block', 'model', 'wtf', 'netmask',
+        'sn', 'mac', 'street'
     )
     inlines = (CommentInline,)
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'text', 'device', 'published')
-    search_fields = ('id', 'text', 'device', 'published')
+    list_display = (
+        'id', 'text', 'device', 'published'
+    )
+    search_fields = (
+        'id', 'text', 'device', 'published'
+    )

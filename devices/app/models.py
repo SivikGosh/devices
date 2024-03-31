@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Device(models.Model):
-    "Общая модель устройства"
+    """бщая модель устройства"""
 
     sticker = models.PositiveSmallIntegerField(
         verbose_name='Наклейка',
@@ -10,13 +10,9 @@ class Device(models.Model):
         null=True,
         unique=True,
     )
-
     building = models.CharField(max_length=255)  # Дом
     ip = models.CharField(max_length=255)  # ip address
-
-    # Район: 'Склад', 'empty', 'Красногорск', 'Лобня', 'Москва', 'Октябрьский', 'Котельники', 'Люберцы'
-    block = models.CharField(max_length=255)
-
+    block = models.CharField(max_length=255)  # район
     model = models.CharField(max_length=255)  # model
     comment_1 = models.CharField(max_length=255)
     wtf = models.CharField(max_length=255)  # wtf
@@ -36,10 +32,14 @@ class Device(models.Model):
 
 
 class Comment(models.Model):
-    "Модель комментариев к устройству"
+    """Модель комментариев к устройству"""
 
     text = models.TextField()
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, related_name='comments')
+    device = models.ForeignKey(
+        Device,
+        on_delete=models.CASCADE,
+        related_name='comments'
+    )
     published = models.DateTimeField(auto_now_add=True)
 
     class Meta:
